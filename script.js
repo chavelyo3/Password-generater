@@ -134,7 +134,7 @@ function desiredLower() {
 
   if (chosenLowerCase === null || chosenLowerCase === "") {
     confirm("Yes or No");
-    desiredspecialchar();
+    desiredLower();
   } else if (chosenLowerCase === "yes" || chosenLowerCase === "y") {
     chosenLowerCase = true;
     return chosenLowerCase;

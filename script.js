@@ -1,90 +1,144 @@
 // Assignment Code
 let generateBtn = document.querySelector("#generate");
 
+// Arrays
+let chosenLength;
+let chosenNumbers;
+let chosenLowerCase;
+let chosenUpperCase;
+let chosenSpecialChar;
 
-function generatepwd(max) {
-return Math.floor(Math.random()* Math.floor(max));
-}
-
-//arrays
 let numbers = ["0123456789"];
 let specialChar = ["!@#$%^&*()-=+_?<>"];
 let alphaLower = ["abcdefghijklmnopqrstuvwxyz"];
 let alphaUpper = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-let generatePassword = [];
 
 
+//Function to destermine legnth
+function desiredLength() {
+  chosenLength = prompt("How long would you like your password to be?");
+  if (chosenLength < 8) {
+    confirm("Password must be between 8 to 128 characters long");
+    desiredLength();
+  } else if (chosenLength > 128) {
+    confirm("Password must be between 8 to 128 characters long");
+    desiredLength();
+  } else if (isNaN(chosenLength)) {
+    confirm("Password must be between 8 to 128 characters long");
+    desiredLength();
+  }
+  return chosenLength;
+}
+
+//Function to determine uppercase
+function desiredUpper() {
+  chosenUpper = prompt("Would you like to use uppercase letters?");
+  chosenUpper = chosenUpper.toLowerCase();
+
+  if (chosenUpper === null || chosenUpper === "") {
+    confirm("Yes or No");
+    desiredUpper();
+  } else if (chosenUpper === "yes" || chosenUpper === "y") {
+    chosenUpper = true;
+    return chosenUpper;
+  } else if (chosenUpper === "no" || chosenUpper === "n") {
+    chosenUpper = false;
+    return chosenUpper;
+  } else {
+    confirm("Yes or No");
+    desiredUpper();
+  }
+  return chosenUpper;
+}
+
+//Function to determine numbers
+function desiredNum() {
+  chosenNumbers = prompt("Would you like to use numbers?")
+  chosenNumbers = chosenNumbers.toLowerCase();
+
+  if (chosenNumbers === null || chosenNumbers === "") {
+    confirm("Yes or No");
+    desiredNum();
+  } else if (chosenNumbers === "yes" || chosenNumbers === "y") {
+    chosenNumbers = true;
+    return chosenNumbers;
+  } else if (chosenNumbers === "no" || chosenNumbers === "n") {
+    chosenNumbers = false;
+    return chosenNumbers;
+  } else {
+    confirm("Yes or No");
+    desiredNum();
+  }
+  return chosenNumbers;
+}
+
+// function to determine special characters
+function desiredspecialchar() {
+  chosenSpecialChar = prompt("Would you like to use special characters?")
+  chosenSpecialChar = chosenSpecialChar.toLowerCase();
+
+  if (chosenSpecialChar === null || chosenSpecialChar === "") {
+    confirm("Yes or No");
+    desiredspecialchar();
+  } else if (chosenSpecialChar === "yes" || chosenSpecialChar === "y") {
+    chosenSpecialChar = true;
+    return chosenSpecialChar;
+  } else if (chosenSpecialChar === "no" || chosenSpecialChar === "n") {
+    chosenSpecialChar = false;
+    return chosenSpecialChar;
+  } else {
+    confirm("Yes or No");
+    desiredspecialchar();
+  }
+  return chosenSpecialChar;
+}
+
+//Function to use all 
+function generatePassword() {
+  desiredLength();
+  console.log(chosenLength);
+  desiredUpper();
+  console.log(chosenUpper);
+  desiredNum();
+  console.log(chosenNumbers);
+  desiredspecialchar();
+  console.log(chosenSpecialChar);
+
+  let characters = alphaLower;
+  let password = "";
+  if (chosenUpper && chosenNumbers && chosenSpecialChar) {
+    characters += alphaUpper + numbers + specialChar;
+  } else if (chosenUpper && chosenNumbers) {
+    characters += alphaUpper + numbers;
+  } else if (chosenNumbers && chosenSpecialChar) {
+    characters += numbers + specialChar;
+  } else if (chosenUpper && chosenSpecialChar) {
+    characters += alphaUpper + specialChar;
+  } else if (chosenUpper) {
+    characters += alphaUpper;
+  } else if (chosenNumbers) {
+    characters += numbers;
+  } else if (chosenSpecialChar) {
+    characters += specialChar;
+  } else {
+    characters === alphaLower;
+  }
+
+  for (let i = 0; i < chosenLength; i++) {
+    password += characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+  }
+  return password;
+}
 
 // Write password to the #password input
 function writePassword() {
   let password1 = "";
-
- 
+  password1 = generatePassword();
+  let passwordText = document.querySelector("#password");
+  passwordText.value = password1;
 }
- 
-// legnth confirmtion
-// must be between 8-123 characters
-let chosenLength = prompt("How long will you like your password to be?");
-console.log(chosenLength);
-
-
-
-//lowercase confirmation
-let chosenLower = confirm("Would you like to use lower case characters?");
-console.log(chosenLower);
-
-if(chosenLower){
-  generatePassword = generatePassword.concat(alphaLower);
-} else{
-  alert("No lowercase letters will be used");
-}
-console.log(generatePassword);
-
-//uppercase confirmation
-
-let chosenUpper = confirm("Would you like to use upper case characters?");
-console.log(chosenUpper);
-
-if(chosenUpper){
-  generatePassword = generatePassword.concat(alphaUpper);
-} else{
-  alert("No uppercase letters will be used");
-}
-console.log(generatePassword);
-// Confirm: special characters
-
-let chosenSpecial = confirm("Would you like to use special characters?");
-console.log(chosenSpecial);
-
-if(chosenSpecial){
-  generatePassword = generatePassword.concat(specialChar);
-} else{
-  alert("No special characters will be used");
-}
-console.log(generatePassword);
-
-// Confirm: numbers
-let chosenNum = confirm("Would you like to use numbers?");
-console.log(chosenNum);
-
-if(chosenNum){
-  generatePassword = generatePassword.concat(numbers);
-} else{
-  alert("No numbers will be used");
-}
-console.log(generatePassword);
-
-function passwd(chosenLength, chosenSpecial){
-for(let i = 0; i <chosenLength; i++){
-password1 += generatePassword.concat(Math.floor(Math.random() * generatePassword.length));
-}
-console.log(password1);
-
-let secondItem = alphaLower[writePassword(alphaLower.length)];
-let passwordText = document.querySelector("#password");
-passwordText.value = passwordResult
-}
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);

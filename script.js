@@ -162,6 +162,9 @@ function writePassword() {
   let passwordText = document.querySelector("#password");
   passwordText.value = password1;
 }
+//obtain help from forums in stackflow 
+
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);

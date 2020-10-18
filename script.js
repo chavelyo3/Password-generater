@@ -14,6 +14,38 @@ let alphaLower = ["abcdefghijklmnopqrstuvwxyz"];
 let alphaUpper = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 
 
+//Function to use all 
+function generatePassword() {
+  desiredLength();
+  console.log(chosenLength);
+  desiredUpper();
+  console.log(chosenUpper);
+  desiredNum();
+  console.log(chosenNumbers);
+  desiredspecialchar();
+  console.log(chosenSpecialChar);
+
+  let characters = alphaLower;
+  let password = "";
+  if (chosenUpper && chosenNumbers && chosenSpecialChar) {
+    characters += alphaUpper + numbers + specialChar;
+  } else if (chosenUpper && chosenNumbers) {
+    characters += alphaUpper + numbers;
+  } else if (chosenNumbers && chosenSpecialChar) {
+    characters += numbers + specialChar;
+  } else if (chosenUpper && chosenSpecialChar) {
+    characters += alphaUpper + specialChar;
+  } else if (chosenUpper) {
+    characters += alphaUpper;
+  } else if (chosenNumbers) {
+    characters += numbers;
+  } else if (chosenSpecialChar) {
+    characters += specialChar;
+  } else {
+    characters === alphaLower;
+  }
+
+
 //Function to destermine legnth
 function desiredLength() {
   chosenLength = prompt("How long would you like your password to be?");
@@ -93,37 +125,28 @@ function desiredspecialchar() {
   return chosenSpecialChar;
 }
 
-//Function to use all 
-function generatePassword() {
-  desiredLength();
-  console.log(chosenLength);
-  desiredUpper();
-  console.log(chosenUpper);
-  desiredNum();
-  console.log(chosenNumbers);
-  desiredspecialchar();
-  console.log(chosenSpecialChar);
+// function to determine lowercase letters
+function desiredLower() {
+  chosenLowerCase = prompt("Would you like to use special characters?")
+  chosenLowerCase = chosenLowerCase.toLowerCase();
 
-  let characters = alphaLower;
-  let password = "";
-  if (chosenUpper && chosenNumbers && chosenSpecialChar) {
-    characters += alphaUpper + numbers + specialChar;
-  } else if (chosenUpper && chosenNumbers) {
-    characters += alphaUpper + numbers;
-  } else if (chosenNumbers && chosenSpecialChar) {
-    characters += numbers + specialChar;
-  } else if (chosenUpper && chosenSpecialChar) {
-    characters += alphaUpper + specialChar;
-  } else if (chosenUpper) {
-    characters += alphaUpper;
-  } else if (chosenNumbers) {
-    characters += numbers;
-  } else if (chosenSpecialChar) {
-    characters += specialChar;
+  if (chosenLowerCase === null || chosenLowerCase === "") {
+    confirm("Yes or No");
+    desiredspecialchar();
+  } else if (chosenLowerCase === "yes" || chosenLowerCase === "y") {
+    chosenLowerCase = true;
+    return chosenLowerCase;
+  } else if (chosenLowerCase === "no" || chosenLowerCase === "n") {
+    chosenLowerCase = false;
+    return chosenLowerCase;
   } else {
-    characters === alphaLower;
+    confirm("Yes or No");
+    desiredLower();
   }
+  return chosenLowerCase;
+}
 
+// 
   for (let i = 0; i < chosenLength; i++) {
     password += characters.charAt(
       Math.floor(Math.random() * characters.length)
@@ -132,7 +155,7 @@ function generatePassword() {
   return password;
 }
 
-// Write password to the #password input
+// Write password to the password input
 function writePassword() {
   let password1 = "";
   password1 = generatePassword();

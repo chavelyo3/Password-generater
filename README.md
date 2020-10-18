@@ -11,5 +11,5 @@ https://chavelyo3.github.io/Password-generater/
 <h1>How to use: </h1><br>
 click on password generater and go through prompts by answering yes or no, to get your randomized password.
 <br><br><br>
-<h1>Credits:<H1> <br>
+<h1>Credits:</h1> <br>
 thanks to U of M coders and stackflow!

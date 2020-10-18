@@ -24,11 +24,13 @@ function generatePassword() {
   console.log(chosenNumbers);
   desiredspecialchar();
   console.log(chosenSpecialChar);
+  desiredLower();
+  console.log(chosenLowerCase);
 
   let characters = alphaLower;
   let password = "";
-  if (chosenUpper && chosenNumbers && chosenSpecialChar) {
-    characters += alphaUpper + numbers + specialChar;
+  if (chosenUpper && chosenNumbers && chosenSpecialChar && chosenLowerCase) {
+    characters += alphaUpper + numbers + specialChar + alphaLower;
   } else if (chosenUpper && chosenNumbers) {
     characters += alphaUpper + numbers;
   } else if (chosenNumbers && chosenSpecialChar) {

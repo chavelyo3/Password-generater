@@ -1,4 +1,4 @@
-#task
+<h1>Task:</h1>
 
 This weeks homework we had to create a password generater that randomized characters, numbers, upercase and lowercase letters.
 <br><br><br>
@@ -8,8 +8,8 @@ https://chavelyo3.github.io/Password-generater/
 
 
 <br><br><br>
-How to use: <br>
+<h1>How to use: </h1><br>
 click on password generater and go through prompts by answering yes or no, to get your randomized password.
 <br><br><br>
-Credits <br>
+<h1>Credits:<H1> <br>
 thanks to U of M coders and stackflow!
